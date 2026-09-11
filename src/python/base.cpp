@@ -1461,7 +1461,7 @@ void export_base(nb::module_ &m) {
     ab.def("__init__",
            [](ArrayBase &, nb::handle) {
                 nb::raise("drjit.ArrayBase is not constructible.");
-           }, nb::sig("def __init__(self, *args) -> None"),
+           }, nb::sig("def __init__(self, *args, **kwargs) -> None"),
            doc_ArrayBase_init
     );
 

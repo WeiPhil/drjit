@@ -672,6 +672,10 @@ drjit.(cuda|llvm|metal|auto).*__(set|del)item__:
 drjit.(cuda|llvm|metal|auto).*__getitem__:
     pass
 
+PCG32.__prefix__:
+    \from typing import TypeVar
+    T = TypeVar("T")
+
 PCG32.__isub__:
     def __isub__(self, arg: drjit.AnyArray | int, /) -> PCG32: # type: ignore
         \doc
@@ -692,7 +696,7 @@ drjit.scalar.__prefix__:
     \from builtins import int as UInt64
 
 drjit.__prefix__:
-    \from typing import Iterable, TypeAlias, Union, Optional, Type, Callable, Generic, TypeVar, Literal, Tuple, List
+    \from typing import Iterable, Iterator, TypeAlias, Union, Optional, Type, Callable, Generic, TypeVar, Literal, Tuple, List
     \from collections.abc import Callable as _Callable, Sequence as Sequence
     \from drjit.nn import CoopVec as CoopVec
     Axis: TypeAlias = int | tuple[int, ...] | None
@@ -714,4 +718,20 @@ drjit.nn.__prefix__:
 # Correct the type hint for memview
 drjit.ArrayBase.memview:
     def memview(self) -> memoryview:
+        \doc
+
+drjit.inf:
+    inf: float = ...
+
+drjit.nan:
+    nan: float = ...
+
+drjit.__version__:
+    __version__: str = ...
+
+drjit.ast.__prefix__:
+    \from typing import Literal, Union
+
+drjit.ast.hint:
+    def hint(arg: T, /, *, mode: Literal["scalar", "evaluated", "symbolic", None] = None, max_iterations: Union[int, None] = None, label: Union[str, None] = None, include: Union[list[object], None] = None, exclude: Union[list[object], None] = None, strict: bool = True) -> T:
         \doc

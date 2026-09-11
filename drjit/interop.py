@@ -425,7 +425,7 @@ torch_wrapper = None
 # See https://github.com/pytorch/pytorch/issues/117491
 torch_desc_o = None
 
-def new_drjit_scope():
+def new_drjit_scope() -> None:
     if dr.has_backend(dr.JitBackend.LLVM):
         dr.detail.new_scope(dr.JitBackend.LLVM)
     if dr.has_backend(dr.JitBackend.CUDA):

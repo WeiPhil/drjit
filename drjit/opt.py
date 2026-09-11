@@ -615,6 +615,9 @@ class SGD(Optimizer[Optional[dr.ArrayBase]]):
     <https://pytorch.org/docs/stable/generated/torch.optim.SGD.html>`__.
     """
 
+    momentum: float
+    nesterov: bool
+
     def __init__(
         self,
         lr: LearningRate,
